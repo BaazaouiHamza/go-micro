@@ -60,7 +60,7 @@ swarm_down:
 ## build_auth: builds the authentication binary as a linux executable
 build_auth:
 	@echo "Building authentication binary.."
-	cd authentication-service && env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o ${AUTH_BINARY} ./cmd/api
+	cd ..\authentication-service && set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0 && go build -o ${AUTH_BINARY} ./cmd/api
 	@echo "Authentication binary built!"
 
 ## build_logger: builds the logger binary as a linux executable
@@ -72,7 +72,7 @@ build_logger:
 ## build_broker: builds the broker binary as a linux executable
 build_broker:
 	@echo "Building broker binary..."
-	chdir ..\broker-service && set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0&& go build -o ${BROKER_BINARY} ./cmd/api
+	chdir ..\broker-service && set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0 && go build -o ${BROKER_BINARY} ./cmd/api
 	@echo "Broker binary built!"
 
 ## build_listener: builds the listener binary as a linux executable
@@ -90,7 +90,7 @@ build_mail:
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
 # up_build: build_auth build_broker build_listener build_logger build_mail
-  up_build: build_broker
+  up_build: build_broker build_auth
 	@echo "Stopping docker images (if running...)"
 	docker-compose down
 	@echo "Building (when required) and starting docker images..."
