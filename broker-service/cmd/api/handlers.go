@@ -53,6 +53,7 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 		app.errorJSON(w, err)
 		return
 	}
+	request.Header.Set("Content-Type", "application/json")
 
 	clinet := &http.Client{}
 
