@@ -2,7 +2,7 @@ FRONT_END_BINARY=frontApp.exe
 LOGGER_BINARY=loggerServiceApp
 BROKER_BINARY=brokerApp
 AUTH_BINARY=authApp
-LISTENER_BINARY=listener
+LISTENER_BINARY=listenerApp
 MAIL_BINARY=mailerServiceApp
 AUTH_VERSION=1.0.0
 BROKER_VERSION=1.0.0
@@ -78,7 +78,7 @@ build_broker:
 ## build_listener: builds the listener binary as a linux executable
 build_listener:
 	@echo "Building listener binary..."
-	cd listener-service && env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o ${LISTENER_BINARY} .
+	chdir ..\listener-service && set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0 && go build -o ${LISTENER_BINARY} .
 	@echo "Listener binary built!"
 
 ## build_mail: builds the mail binary as a linux executable
@@ -90,7 +90,7 @@ build_mail:
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
 # up_build: build_auth build_broker build_listener build_logger build_mail
-  up_build: build_broker build_auth build_logger build_mail
+  up_build: build_broker build_auth build_logger build_mail build_listener
 	@echo "Stopping docker images (if running...)"
 	docker-compose down
 	@echo "Building (when required) and starting docker images..."

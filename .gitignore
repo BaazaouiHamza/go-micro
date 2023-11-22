@@ -6,7 +6,7 @@ loggerServiceApp
 mailerServiceApp
 authApp
 brokerApp
-listener
+listenerApp
 frontApp.exe
 db-data/*
 !db-data/.gitkeep
