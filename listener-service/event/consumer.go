@@ -97,6 +97,7 @@ func handlePayload(payload Payload) {
 		if err != nil {
 			log.Println(err)
 		}
+		log.Printf("logged even with %v\t", payload)
 	case "auth":
 		// authenticate
 		// you can have as many cases as you want, as long as you write the logic
